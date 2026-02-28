@@ -74,13 +74,13 @@ module.exports.getAll = async function (req, res, next) {
 module.exports.update = async function (req, res, next) {
   try {
     // Create a car object from the request body
-    let updatedCar = CarModel(req.body);
+    let updatedCar = new CarModel(req.body);
     
     // Change the _id to use the one received in the request parameters.
     updatedCar._id = req.params.id;
 
     // Submit the change
-    let result = await CarModel.updateOne();
+    let result = await CarModel.updateOne({ _id: updatedCar._id }, updatedCar);
     console.log("Result: " + result);
 
     // Handle the result: send a response.
