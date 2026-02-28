@@ -106,7 +106,7 @@ module.exports.update = async function (req, res, next) {
 module.exports.remove = async function (req, res, next) {
   try {
     // Delete  using the id received in the parameter of the request
-    let result = await CarModel.deleteOne({ _id: req.params.carId });
+    let result = await CarModel.deleteOne({ _id: req.params.id });
     console.log("Result: " + result);
 
     // Handle the result and send a response
