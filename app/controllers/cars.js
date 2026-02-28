@@ -5,6 +5,15 @@ module.exports.getCar = async function (req, res, next) {
     // Find one using the id sent in the parameter of the request
     let car = await CarModel.findOne({ _id: req.params.id });
 
+    if (!car)
+            throw new Error('Car not found. Are you sure it exists?') 
+        
+        res.json({
+            success: true,
+            message: "Car retrieved successfully.",
+            data: car
+        });
+
     // Set the response status
     res.status(200);
 
