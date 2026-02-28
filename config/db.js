@@ -1,14 +1,14 @@
 require('dotenv').config()
 const mongoose = require('mongoose');
+const uri = process.env.ATLASDB;
 
-let ConnectionString = "mongodb+srv://api_db_user:zl7jQB76rfiNLXUr@cluster002.mamnjrw.mongodb.net/products?appName=Cluster002"
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 module.exports = async function () {
   try {
     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
-    await mongoose.connect(ConnectionString, clientOptions);
+    await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("==== Backend successfully connected to MongoDB!");
   } catch (error) {
